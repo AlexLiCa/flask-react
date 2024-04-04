@@ -3,89 +3,109 @@ import { EXAMPLES } from "../../data-with-examples";
 import "./movimientos.css";
 
 const FormularioMovimiento = ({ selectedTopic }) => {
+  const [resultado, setResultado] = useState(""); // Estado para almacenar y mostrar el resultado
 
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault(); 
-    const formData = new FormData(e.target); 
-    const data = Object.fromEntries(formData.entries());
 
-    const LINKS = {
-      Deposito: "http://127.0.0.1:5000/deposito",
-      Retiro: "http://127.0.0.1:5000/retiro",
-      Transferencia: "http://127.0.0.1:5000/transferencia",
-    };
-    
-    let url = LINKS[selectedTopic];
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", 
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseBody = await response.json();
-
-      if (response.ok) {
-        alert(responseBody.message);
-
-      } else {
-        alert(responseBody.message);
-      }
-    } catch (error) {
-      console.error("Error al realizar la solicitud", error);
-      alert(responseBody.message);
-    }
-    e.target.reset();
+  // Actualiza este objeto para reflejar las rutas y acciones correctas
+  const LINKS = {
+    Paquetes: "http://127.0.0.1:8000/paquetes",
+    Agregar: "http://127.0.0.1:8000/agregar",
+    // Nota: Las siguientes URLs son base, se debe agregar el ID del paquete dinámicamente
+    Rastrear: "http://127.0.0.1:8000/rastrear/",
+    Actualizar: "http://127.0.0.1:8000/actualizar/",
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    let url = LINKS[selectedTopic];
+
+    // Si se requiere ID para Rastrear y Actualizar y el método es GET, añadir al URL
+    if (["Rastrear", "Actualizar"].includes(selectedTopic) && data.id) {
+      url += data.id; // Asume que se añade el ID al final de la URL.
+    }
+
+    let fetchOptions = {
+      method:
+        selectedTopic === "Agregar"
+          ? "POST"
+          : selectedTopic === "Actualizar"
+          ? "PUT"
+          : "GET",
+      headers: {},
+    };
+
+    // Añadir cabeceras y cuerpo solo si el método no es GET
+    if (fetchOptions.method !== "GET") {
+      fetchOptions.headers["Content-Type"] = "application/json";
+      fetchOptions.body = JSON.stringify(data);
+    }
+
+    console.log(selectedTopic);
+    console.log(url);
+    console.log(fetchOptions.method)
+    try {
+      const response = await fetch(url, fetchOptions);
+      const result = await response.json();
+      setResultado(JSON.stringify(result, null, 2));
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+      setResultado("Error al realizar la solicitud.");
+    }
+  };
 
 
   const renderForm = () => {
     switch (selectedTopic) {
-      case "Deposito":
+      case "Paquetes":
         return (
           <form onSubmit={handleSubmit}>
-            <label htmlFor="cuenta">Número de cuenta:</label>
-            <input type="text" id="no_cuenta" name="no_cuenta" required />
-
-            <label htmlFor="monto">Monto:</label>
-            <input type="number" id="monto" name="monto" required />
-
-            <button type="submit">Realizar Depósito</button>
+            <button type="submit">Mostrar Paquetes</button>
           </form>
         );
-      case "Retiro":
+      case "Agregar":
         return (
           <form onSubmit={handleSubmit}>
-            <label htmlFor="cuenta">Número de cuenta:</label>
-            <input type="text" id="no_cuenta" name="no_cuenta" required />
+            <label htmlFor="dir">Direccion:</label>
+            <input type="text" id="direccion" name="direccion" required />
 
-            <label htmlFor="nip">NIP:</label>
-            <input type="password" id="nip" name="nip" required />
+            <label htmlFor="dest">Destinatario:</label>
+            <input type="text" id="destinatario" name="destinatario" required />
 
-            <label htmlFor="monto">Monto:</label>
-            <input type="number" id="monto" name="monto" required />
+            <label htmlFor="est">Estado:</label>
+            <input type="text" id="estado" name="estado" required />
 
-            <button type="submit">Realizar Retiro</button>
+            <button type="submit">Agregar Paquete</button>
           </form>
         );
-      case "Transferencia":
+      case "Rastrear":
         return (
           <form onSubmit={handleSubmit}>
-            <label htmlFor="cuentaOrigen">Cuenta Origen:</label>
-            <input type="text" id="no_origen" name="no_origen" required />
+            <label htmlFor="idP">Id del Paquete:</label>
+            <input type="number" id="id" name="id" required />
 
-            <label htmlFor="cuentaDestino">Cuenta Destino:</label>
-            <input type="text" id="no_destino" name="no_destino" required/>
+            <button type="submit">Buscar paquete</button>
+          </form>
+        );
+      case "Actualizar":
+        return (
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="idP">Id del Paquete:</label>
+            <input type="number" id="id" name="id" required />
 
-            <label htmlFor="monto">Monto:</label>
-            <input type="number" id="monto" name="monto" required />
+            <label htmlFor="dir">Direccion:</label>
+            <input type="text" id="direccion" name="direccion" required />
 
-            <button type="submit">Realizar Transferencia</button>
+            <label htmlFor="dest">Destinatario:</label>
+            <input type="text" id="destinatario" name="destinatario" required />
+
+            <label htmlFor="est">Estado:</label>
+            <input type="text" id="estado" name="estado" required />
+
+            <button type="submit">Actualizar datos</button>
           </form>
         );
       default:
@@ -101,6 +121,7 @@ const FormularioMovimiento = ({ selectedTopic }) => {
           "Seleccione un tipo de movimiento para ver los detalles y realizar operaciones."}
       </p>
       {selectedTopic && renderForm()}
+      <pre>{resultado}</pre>
     </div>
   );
 };

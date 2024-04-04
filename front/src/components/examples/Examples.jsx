@@ -22,27 +22,33 @@ export default function Examples({ onLogout }) {
       <h2>Opciones</h2>
       <menu>
         <TabButton
-          isSelected={selectedTopic === "Deposito"}
-          onSelect={() => handleSelect("Deposito")}
+          isSelected={selectedTopic === "Paquetes"}
+          onSelect={() => handleSelect("Paquetes")}
         >
-          Deposito
+          Paquetes
         </TabButton>
         <TabButton
-          isSelected={selectedTopic === "Retiro"}
-          onSelect={() => handleSelect("Retiro")}
+          isSelected={selectedTopic === "Agregar"}
+          onSelect={() => handleSelect("Agregar")}
         >
-          Retiro
+          Agregar
         </TabButton>
         <TabButton
-          isSelected={selectedTopic === "Transferencia"}
-          onSelect={() => handleSelect("Transferencia")}
+          isSelected={selectedTopic === "Rastrear"}
+          onSelect={() => handleSelect("Rastrear")}
         >
-          Transferencia
+          Rastrear
+        </TabButton>
+        <TabButton
+          isSelected={selectedTopic === "Actualizar"}
+          onSelect={() => handleSelect("Actualizar")}
+        >
+          Actualizar
         </TabButton>
       </menu>
       {tabContent}
-      <div class="logout-container">
-        <button class="logout-button" onClick={onLogout}>
+      <div className="logout-container">
+        <button className="logout-button" onClick={onLogout}>
           Salir
         </button>
       </div>
