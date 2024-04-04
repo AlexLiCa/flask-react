@@ -3,15 +3,11 @@ import { EXAMPLES } from "../../data-with-examples";
 import "./movimientos.css";
 
 const FormularioMovimiento = ({ selectedTopic }) => {
-  const [resultado, setResultado] = useState(""); // Estado para almacenar y mostrar el resultado
+  const [resultado, setResultado] = useState(""); 
 
-
-
-  // Actualiza este objeto para reflejar las rutas y acciones correctas
   const LINKS = {
     Paquetes: "http://127.0.0.1:8000/paquetes",
     Agregar: "http://127.0.0.1:8000/paquetes",
-    // Nota: Las siguientes URLs son base, se debe agregar el ID del paquete dinámicamente
     Rastrear: "http://127.0.0.1:8000/paquetes/",
     Actualizar: "http://127.0.0.1:8000/paquetes/",
   };
@@ -23,9 +19,8 @@ const FormularioMovimiento = ({ selectedTopic }) => {
 
     let url = LINKS[selectedTopic];
 
-    // Si se requiere ID para Rastrear y Actualizar y el método es GET, añadir al URL
     if (["Rastrear", "Actualizar"].includes(selectedTopic) && data.id) {
-      url += data.id; // Asume que se añade el ID al final de la URL.
+      url += data.id; 
     }
 
     let fetchOptions = {
@@ -38,7 +33,6 @@ const FormularioMovimiento = ({ selectedTopic }) => {
       headers: {},
     };
 
-    // Añadir cabeceras y cuerpo solo si el método no es GET
     if (fetchOptions.method !== "GET") {
       fetchOptions.headers["Content-Type"] = "application/json";
       fetchOptions.body = JSON.stringify(data);
@@ -121,7 +115,11 @@ const FormularioMovimiento = ({ selectedTopic }) => {
           "Seleccione un tipo de movimiento para ver los detalles y realizar operaciones."}
       </p>
       {selectedTopic && renderForm()}
-      <pre>{resultado}</pre>
+      {resultado !== "" && (
+        <div className="resultado-container">
+          <pre>{resultado}</pre>
+        </div>
+      )}
     </div>
   );
 };
