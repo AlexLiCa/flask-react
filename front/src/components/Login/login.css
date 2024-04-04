@@ -1,0 +1,29 @@
+
+/* Puedes necesitar ajustar el tamaño del texto y otros estilos para que coincida con tu diseño */
+.parent-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+.logout-container {
+    bottom: 10px;
+    left: 10px;
+    margin-top: 2rem;
+}
+
+.logout-button {
+    background-color: #800080; /* A lighter shade of purple */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #9932CC; /* A slightly lighter purple for hover effect */
+}

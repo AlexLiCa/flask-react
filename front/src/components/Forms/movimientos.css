@@ -1,0 +1,54 @@
+/* Estilo general del formulario */
+form {
+  background-color: #2C2C54; /* Color de fondo oscuro basado en tu descripción */
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  color: white; /* Texto en color blanco */
+}
+
+/* Estilo de las etiquetas de los formularios */
+form label {
+  display: block; /* Hace que cada etiqueta sea un bloque para su propio línea */
+  margin-bottom: 5px;
+}
+
+/* Estilo de los inputs de los formularios */
+form input {
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  padding: 10px;
+  margin-bottom: 15px; /* Espacio entre campos */
+  border: none;
+  border-radius: 4px;
+}
+
+/* Especifica un estilo para los botones */
+form button {
+  padding: 10px 20px;
+  background-color: #4C4C6D; /* Un color que contrasta pero se complementa con el fondo del formulario */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo del botón al pasar el cursor */
+form button:hover {
+  background-color: #6C6C8D; /* Un tono más claro para el efecto hover */
+}
+
+/* Estilo para cuando un botón está activo o seleccionado */
+.active {
+  background-color: #6C6C8D; /* Un tono más claro para indicar que está activo */
+}
+
+/* Estilo del contenido de la pestaña */
+#tab-content {
+  background-color: #2C2C54; /* Mismo color de fondo que el formulario */
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+/* Puedes necesitar ajustar el tamaño del texto y otros estilos para que coincida con tu diseño */
