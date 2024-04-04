@@ -1,18 +1,18 @@
 FROM node:21-alpine AS build
 
-WORKDIR /app
+WORKDIR /front
 
 COPY package*.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 FROM nginx:stable-alpine as production
 
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /front/dist /usr/share/nginx/html
 
 EXPOSE 80
 

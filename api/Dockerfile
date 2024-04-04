@@ -5,7 +5,7 @@ FROM python:3.8-slim-buster
 RUN apt-get update && apt-get install -y postgresql-client
 
 # Establecer el directorio de trabajo en el contenedor
-WORKDIR /app
+WORKDIR /api
 
 # Copiar el archivo requirements.txt al contenedor y instalar las dependencias
 COPY requirements.txt .
