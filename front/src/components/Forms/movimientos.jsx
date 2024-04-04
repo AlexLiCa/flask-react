@@ -10,10 +10,10 @@ const FormularioMovimiento = ({ selectedTopic }) => {
   // Actualiza este objeto para reflejar las rutas y acciones correctas
   const LINKS = {
     Paquetes: "http://127.0.0.1:8000/paquetes",
-    Agregar: "http://127.0.0.1:8000/agregar",
+    Agregar: "http://127.0.0.1:8000/paquetes",
     // Nota: Las siguientes URLs son base, se debe agregar el ID del paquete dinámicamente
-    Rastrear: "http://127.0.0.1:8000/rastrear/",
-    Actualizar: "http://127.0.0.1:8000/actualizar/",
+    Rastrear: "http://127.0.0.1:8000/paquetes/",
+    Actualizar: "http://127.0.0.1:8000/paquetes/",
   };
 
   const handleSubmit = async (e) => {

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import request, jsonify
+from flask_cors import CORS
 
 db = SQLAlchemy()
 
@@ -65,6 +66,7 @@ def init_routes(app):
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://usuario:contraseña@db/paquetesdb'
 
     db.init_app(app)
