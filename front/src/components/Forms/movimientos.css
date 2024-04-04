@@ -51,4 +51,27 @@ form button:hover {
   color: white;
 }
 
+#tab-content pre {
+  background-color: #250225; /* Morado muy oscuro, casi negro */
+  color: #f3e6f9; /* Un color de texto morado muy claro para contraste */
+  border-left: 5px solid #8e44ad; /* Un color de acento morado más vivo */
+  padding: 20px;
+  margin-top: 20px;
+  overflow-x: auto; /* Desplazamiento horizontal si es necesario */
+  overflow-y: auto; /* Desplazamiento vertical si hay muchos elementos */
+  max-height: 400px; /* Altura máxima antes de que la barra de navegación se active */
+  font-family: 'Courier New', monospace; /* Fuente monoespaciada para la alineación del texto */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra suave para dar profundidad */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Mejora la legibilidad del JSON anidado */
+#tab-content pre {
+  white-space: pre-wrap; /* Asegura que los datos se ajusten si es necesario */
+  word-break: break-word; /* Permite que las palabras se rompan adecuadamente para evitar el desbordamiento horizontal */
+}
+
+
+
 /* Puedes necesitar ajustar el tamaño del texto y otros estilos para que coincida con tu diseño */
+ /* background-color: #250225; */

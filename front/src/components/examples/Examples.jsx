@@ -47,11 +47,11 @@ export default function Examples({ onLogout }) {
         </TabButton>
       </menu>
       {tabContent}
-      <div className="logout-container">
+      {/* <div className="logout-container">
         <button className="logout-button" onClick={onLogout}>
           Salir
         </button>
-      </div>
+      </div> */}
     </section>
   );
 }
