@@ -8,23 +8,6 @@ Este proyecto es una aplicación web full-stack que combina un backend Flask con
 - **Frontend React**: Una interfaz de usuario dinámica que consume la API Flask para mostrar y enviar datos.
 - **Dockerizado**: Configuración de Docker y Docker Compose para un despliegue sencillo y rápido.
 
-## Estructura del Proyecto
-
-Flask-React/
-│
-├── api/
-│ ├── Dockerfile
-│ ├── requirements.txt
-│ └── (otros archivos y directorios de Flask)
-│
-├── front/
-│ ├── Dockerfile
-│ ├── package.json
-│ └── (otros archivos y directorios de React)
-│
-├── docker-compose.yml
-└── .gitignore
-
 
 ## Requisitos Previos
 
